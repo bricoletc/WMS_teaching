@@ -1,0 +1,4 @@
+# Use this file to create an environment using:
+# $ conda create --name WMS -c bioconda --file <this file>
+bcftools
+pandas
