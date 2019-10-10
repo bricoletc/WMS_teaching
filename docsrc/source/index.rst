@@ -10,9 +10,9 @@ Workflow management systems teaching
     :maxdepth: 2
 
     Introduction <intro>
-    Part I: walkthrough <P1>
+    Part I: walk me through <P1>
     Part II: hold my hand <P2>
-    Part III: fly on <P3>
+    Part III: i'm flying now <P3>
     Resources <resources>
 
 
