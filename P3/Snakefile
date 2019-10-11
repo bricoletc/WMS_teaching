@@ -2,44 +2,19 @@ import pandas as pd
 
 configfile: "config/config.yaml"
 
-samples = pd.read_table("config/samples.tsv")
+samples = pd.read_csv("config/samples.tsv", sep="\t")
+
+rule all:
+	input:
+		expand("{results}/nuc_diversity.pdf",results=config["results"])
 
 rule build:
 	input:
 		ref="{data}/TB_ref.fa",
-		vcf="{data}/known_variants.vcf"
+		vcf="{data}/known_variants.vcf.gz"
 	output:
-		"{data}/gramtools/build"
+		directory("{data}/gramtools/build")
 	params:
-		k = 9 # Don't go above 11
+		#?
 	shell:
-		"""
-		gramtools build --ref {input.ref} --vcf {input.vcf} --gram-dir {output}
-		"""
-
-rule quasimap:
-	input:
-		build_dir = "{data}/gramtools/build",
-		sample_reads = "{data}/reads/{sample}.fq.gz"
-	output:
-		"{data}/gramtools/{sample}_run"
-	shell:
-		"gramtools quasimap --gram-dir {input.build_dir} --run-dir {output}"	
-		"--reads {input.sample_reads}"
-
-rule infer:
-	input:
-		"{data}/gramtools/{sample}_run"
-	output:
-		"{data}/gramtools/{sample}_run/infer_outputs"
-	shell:
-		"gramtools infer --run-dir {input}"
-
-
-rule mergeVcfs:
-	input:
-		expand("{data}/gramtools/{sample}_run/infer_outputs/{sample}.vcf.gz", sample = samples.sample_name)
-	output:
-		"{data}/final.vcf.gz"
-	shell:
-		"bcftools merge {input} > {output}		
+		#?
