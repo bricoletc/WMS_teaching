@@ -3,22 +3,24 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Workflow management systems teaching
+Workflow management systems 
 ========================================
 
 .. toctree::
     :maxdepth: 2
+    :titlesonly:
 
     Introduction <intro>
-    Part I: walk me through <P1>
-    Part II: hold my hand <P2>
-    Part III: i'm flying now <P3>
+    Part I: walkthrough <P1>
+    Part II: fill in the gaps <P2>
+    Part III: build a full workflow <P3>
     Resources <resources>
 
 
-Indices and tables
-==================
+..
+        Indices and tables
+        ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+        * :ref:`genindex`
+        * :ref:`modindex`
+        * :ref:`search`

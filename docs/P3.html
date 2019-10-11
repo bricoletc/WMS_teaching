@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>&lt;no title&gt; &#8212; WMS_teaching 0.1 documentation</title>
+    <title>Part III: build your own workflow &#8212; WMS_teaching 0.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -16,7 +16,8 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="P2.html" />
+    <link rel="next" title="Useful Resources" href="resources.html" />
+    <link rel="prev" title="Fill in a workflow" href="P2.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -33,7 +34,62 @@
 
           <div class="body" role="main">
             
-  
+  <div class="section" id="part-iii-build-your-own-workflow">
+<h1>Part III: build your own workflow<a class="headerlink" href="#part-iii-build-your-own-workflow" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-task">
+<h2>The task<a class="headerlink" href="#the-task" title="Permalink to this headline">¶</a></h2>
+<p>We want to perform read mapping and variant genotyping against a genome graph, a data structure which contains known genetic variation observed in a population or a species.</p>
+<p>We will use <a class="reference external" href="https://github.com/iqbal-lab-org/gramtools">gramtools</a> to do this. It is not the fastest and it is not the most complete, but it is the one that Brice’s PhD is all about.</p>
+<p>Let’s hope we don’t find any bugs along the way :-)</p>
+</div>
+<div class="section" id="the-data">
+<h2>The data<a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a></h2>
+<p>We have 10 read sets from <cite>Mycobacterium tuberculosis</cite>, a bacterial pathogen. We also have its reference genome and a VCF containing known variants.</p>
+</div>
+<div class="section" id="desired-workflow">
+<h2>Desired workflow<a class="headerlink" href="#desired-workflow" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="id1">
+<img alt="_images/P3_dag.svg" src="_images/P3_dag.svg" /><p class="caption"><span class="caption-text">The steps of the workflow to implement.
+Two samples are shown here, but you have a total of 10 at your disposal.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Start by using only two samples, as in the provided <cite>config/samples.tsv</cite>.</p>
+<p>Then when your workflow works with two samples, run on all 10 using:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="n">config</span><span class="o">/</span><span class="n">all_samples</span><span class="o">.</span><span class="n">tsv</span> <span class="n">config</span><span class="o">/</span><span class="n">samples</span><span class="o">.</span><span class="n">tsv</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="key-information">
+<h2>Key information<a class="headerlink" href="#key-information" title="Permalink to this headline">¶</a></h2>
+<p>Here is some key information to help you write the workflow.</p>
+<p>First, check out the sketched Snakefile that will start you off:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="n">configfile</span><span class="p">:</span> <span class="s2">&quot;config/config.yaml&quot;</span>
+
+<span class="n">samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;config/samples.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">rule</span> <span class="nb">all</span><span class="p">:</span>
+	<span class="nb">input</span><span class="p">:</span>
+		<span class="n">expand</span><span class="p">(</span><span class="s2">&quot;{results}/nuc_diversity.pdf&quot;</span><span class="p">,</span><span class="n">results</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span>
+
+<span class="n">rule</span> <span class="n">build</span><span class="p">:</span>
+	<span class="nb">input</span><span class="p">:</span>
+		<span class="n">ref</span><span class="o">=</span><span class="s2">&quot;{data}/TB_ref.fa&quot;</span><span class="p">,</span>
+		<span class="n">vcf</span><span class="o">=</span><span class="s2">&quot;{data}/known_variants.vcf.gz&quot;</span>
+	<span class="n">output</span><span class="p">:</span>
+		<span class="n">directory</span><span class="p">(</span><span class="s2">&quot;{data}/gramtools/build&quot;</span><span class="p">)</span>
+	<span class="n">params</span><span class="p">:</span>
+		<span class="c1">#?</span>
+	<span class="n">shell</span><span class="p">:</span>
+		<span class="c1">#?</span>
+</pre></div>
+</div>
+</div>
+</div>
+
 
           </div>
           
@@ -51,15 +107,20 @@
 
 
 <h3>Navigation</h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="P1.html">Part I: walk me through</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="P1.html">Part I: walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="P2.html">Part II: fill in the gaps</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Part III: build a full workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="P2.html" title="previous chapter">&lt;no title&gt;</a></li>
+      <li>Previous: <a href="P2.html" title="previous chapter">Fill in  a workflow</a></li>
+      <li>Next: <a href="resources.html" title="next chapter">Useful Resources</a></li>
   </ul></li>
 </ul>
 </div>
