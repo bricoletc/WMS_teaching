@@ -53,11 +53,17 @@ $ cd WMS_teaching
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://oc.ebi.ac.uk/apps/files/?dir=/Teaching&amp;fileid=3487362
 $ tar -xf WMS_stuff.tar
 $ mv WMS_stuff/data data
+$ mv WMS_stuff/WMS.img P3/config
 </pre></div>
 </div>
 </li>
 </ol>
-<p>It contains the dataset we’ll use <a class="reference internal" href="P3.html"><span class="doc">later</span></a> and the singularity image containing some software we will use.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It may be you do not need to do the downloading. In this case make sure you <strong>do</strong> still move <code class="docutils literal notranslate"><span class="pre">data</span></code> and <code class="docutils literal notranslate"><span class="pre">WMS.img</span></code>
+as shown; this will reduce filepath hassle.</p>
+</div>
+<p>The tarball contains the dataset we’ll use <a class="reference internal" href="P3.html"><span class="doc">later</span></a> and the <a class="reference internal" href="resources.html#term-singularity"><span class="xref std std-term">singularity</span></a> image containing some software we will use.</p>
 <ol class="arabic" start="3">
 <li><p class="first">Set up the <a class="reference internal" href="resources.html#term-conda"><span class="xref std std-term">conda</span></a> environment</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda create --name WMS -c bioconda -c conda-forge --file requirements.txt

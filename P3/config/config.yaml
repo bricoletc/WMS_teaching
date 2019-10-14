@@ -2,3 +2,5 @@ data:
     data
 results:
     results
+singularity_path:
+    config/WMS.img

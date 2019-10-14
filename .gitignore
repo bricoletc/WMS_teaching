@@ -1,8 +1,9 @@
+TODOs.rst
 *~
 *.swp
+*.img
 venv
 .snakemake
 docsrc/build
-TODOs.rst
 P3/results/*
 P3/data/*

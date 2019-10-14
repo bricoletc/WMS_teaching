@@ -21,8 +21,13 @@ Note: you can now view these pages locally using ``gio open docs/index.html``, i
     $ wget https://oc.ebi.ac.uk/apps/files/?dir=/Teaching&fileid=3487362
     $ tar -xf WMS_stuff.tar
     $ mv WMS_stuff/data data
+    $ mv WMS_stuff/WMS.img P3/config
 
-It contains the dataset we'll use :doc:`later <P3>` and the singularity image containing some software we will use. 
+.. note::
+    It may be you do not need to do the downloading. In this case make sure you **do** still move ``data`` and ``WMS.img`` 
+    as shown; this will reduce filepath hassle.
+
+The tarball contains the dataset we'll use :doc:`later <P3>` and the :term:`singularity` image containing some software we will use. 
 
 
 3. Set up the :term:`conda` environment ::

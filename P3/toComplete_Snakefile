@@ -16,5 +16,7 @@ rule build:
 		directory("{data}/gramtools/build")
 	params:
 		#?
+	singularity:
+		config["?"]
 	shell:
 		#?
