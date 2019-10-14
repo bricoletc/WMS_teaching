@@ -39,7 +39,7 @@ Here is some key information to help you write the workflow.
 
 First, check out the sketched Snakefile that will start you off:
 
-.. literalinclude:: P3_dir/Snakefile
+.. literalinclude:: P3_dir/toComplete_Snakefile
         :language: python
 
 

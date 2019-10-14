@@ -17,7 +17,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Walkthrough" href="P1.html" />
-    <link rel="prev" title="Workflow management systems" href="index.html" />
+    <link rel="prev" title="Setup" href="setup.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -36,6 +36,35 @@
             
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>In bioinformatics we often write pipelines, <em>ie</em> a set of scripts and tools called in a structured way.
+Some obvious examples:</p>
+<ul class="simple">
+<li>Single-cell RNA-Seq pipeline</li>
+<li>Genomics variant calling pipeline</li>
+</ul>
+<p>Probably at some point during your PhD you have or will need to write your own pipeline (we did!).</p>
+<p>If you are motivated and persistent, or some kind of wizard, you could maybe write your pipeline in <code class="docutils literal notranslate"><span class="pre">bash</span></code>.
+But here are some aspects that could be hard to implement:</p>
+<ul class="simple">
+<li>Forking processes <a class="footnote-reference" href="#f1" id="id1">[1]</a>: running independent processes simultaneously</li>
+<li>Rejoining processes: combining the output from independent processes once they have completed</li>
+<li>Setting up process environments (eg access to tools, libraries), allocated resources (threads, RAM), logging to files.</li>
+<li>Creating reports showing, for <em>eg</em>, the time taken by each process.</li>
+<li>Deploying your pipeline on different platforms: Mac/Windows/Linux, different clusters, the cloud.</li>
+<li>Sharing your pipeline: readability &amp; how easy it is to modify.</li>
+<li>Restart your pipeline where it last failed/stopped.</li>
+</ul>
+<p>Worflow Management Systems (WMS) aim to help us do all this.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Throughout we call <strong>processes</strong> the basic units of work that go into pipelines.</td></tr>
+</tbody>
+</table>
+</div>
 </div>
 
 
@@ -56,6 +85,7 @@
 
 <h3>Navigation</h3>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="P1.html">Part I: walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="P2.html">Part II: fill in the gaps</a></li>
@@ -67,7 +97,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Workflow management systems</a></li>
+      <li>Previous: <a href="setup.html" title="previous chapter">Setup</a></li>
       <li>Next: <a href="P1.html" title="next chapter">Walkthrough</a></li>
   </ul></li>
 </ul>

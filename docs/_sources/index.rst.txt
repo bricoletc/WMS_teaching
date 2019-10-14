@@ -6,10 +6,19 @@
 Workflow management systems 
 ========================================
 
+Welcome! We hope you will learn from this workshop and enjoy it also.
+
+The aim is to understand how to read & write a pipeline using a WMS.
+
+Hopefully after this workshop you will have in mind a situation where you could have used such a tool,
+and will recognise future situations where it will come in handy.
+
+
 .. toctree::
     :maxdepth: 2
     :titlesonly:
 
+    Setup <setup>
     Introduction <intro>
     Part I: walkthrough <P1>
     Part II: fill in the gaps <P2>
