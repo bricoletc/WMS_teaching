@@ -7,3 +7,4 @@ venv
 docsrc/build
 P3/results/*
 P3/data/*
+P3/solutions/encrypted_Snakefile
