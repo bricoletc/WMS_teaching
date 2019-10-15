@@ -49,10 +49,11 @@ $ cd WMS_teaching
 </ol>
 <p>Note: you can now view these pages locally using <code class="docutils literal notranslate"><span class="pre">gio</span> <span class="pre">open</span> <span class="pre">docs/index.html</span></code>, if you want.</p>
 <ol class="arabic" start="2">
-<li><p class="first">Download and extract this tarball</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://oc.ebi.ac.uk/apps/files/?dir=/Teaching&amp;fileid=3487362
-$ tar -xf WMS_stuff.tar
-$ mv WMS_stuff/data data
+<li><p class="first">If we tell you it’s needed, download and extract this tarball: <a class="reference external" href="https://oc.ebi.ac.uk/s/C0VgbVAevgVk7wQ">https://oc.ebi.ac.uk/s/C0VgbVAevgVk7wQ</a> .
+We will give you the password.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv /path/to/tarball/WMS.tar ./
+$ tar -xf WMS.tar &amp;&amp; rm WMS.tar
+$ mv WMS_stuff/data P3/data
 $ mv WMS_stuff/WMS.img P3/config
 </pre></div>
 </div>
@@ -61,17 +62,20 @@ $ mv WMS_stuff/WMS.img P3/config
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">It may be you do not need to do the downloading. In this case make sure you <strong>do</strong> still move <code class="docutils literal notranslate"><span class="pre">data</span></code> and <code class="docutils literal notranslate"><span class="pre">WMS.img</span></code>
-as shown; this will reduce filepath hassle.</p>
+to <code class="docutils literal notranslate"><span class="pre">P3/data</span></code> and <code class="docutils literal notranslate"><span class="pre">P3/config</span></code>. This will reduce filepath hassle.</p>
 </div>
 <p>The tarball contains the dataset we’ll use <a class="reference internal" href="P3.html"><span class="doc">later</span></a> and the <a class="reference internal" href="resources.html#term-singularity"><span class="xref std std-term">singularity</span></a> image containing some software we will use.</p>
 <ol class="arabic" start="3">
-<li><p class="first">Set up the <a class="reference internal" href="resources.html#term-conda"><span class="xref std std-term">conda</span></a> environment</p>
+<li><p class="first">Set up the <a class="reference internal" href="resources.html#term-conda"><span class="xref std std-term">conda</span></a> environment and activate it:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda create --name WMS -c bioconda -c conda-forge --file requirements.txt
+(Proceed? [y])
+$ conda activate WMS
 </pre></div>
 </div>
 </li>
 </ol>
 <p>This provides the python libraries and some of the tools we will use.</p>
+<p>Done!</p>
 </div>
 
 
