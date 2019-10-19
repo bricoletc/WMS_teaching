@@ -27,6 +27,11 @@ But here are some aspects that could be hard to implement:
 
 Worflow Management Systems (WMS) aim to help us do all this.
 
+Tool
+------
+
+Here we will use Snakemake, a python package for writing worflows.
+
 .. rubric:: Footnotes
 
 .. [#f1] Throughout we call **processes** the basic units of work that go into pipelines.

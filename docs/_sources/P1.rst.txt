@@ -1,2 +1,21 @@
 Walkthrough
 ========================================
+
+.. contents::
+    :local:
+
+We go through the example from the snakemake `tutorial <https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html>`_.
+
+DAG
+-------------
+
+A workflow can be represented as a Directed Acyclic Graph (DAG) where the nodes are processes and a directed edge connects process A to process B if B needs to run only after A has completed. Logically, this is because process B needs data as input which process A can provide! 
+
+The graph is acyclic because a process cannot require itself to have run before running.
+
+Here is the DAG of our example workflow:
+
+.. figure:: img/P1_dag.png
+
+    Read data from two samples gets mapped, sorted, indexed and variant called.
+

@@ -1,5 +1,5 @@
 =====================================
-Part III: build your own workflow
+Build your own workflow
 =====================================
 
 The task
@@ -35,11 +35,39 @@ Desired workflow
 Key information
 ----------------
 
-Here is some key information to help you write the workflow.
+Below is some key information to help you write the workflow.
 
-First, check out the sketched Snakefile that will start you off:
+Starting point
+````````````````
+Here is the Snakefile we start from:
 
 .. literalinclude:: P3_dir/toComplete_Snakefile
         :language: python
 
+Gramtools commands
+````````````````````
+
+Get information on available gramtools commands by running ``singularity exec P3/config/WMS.img gramtools``
+
+Tips:
+
+* ``build`` takes a `kmer-size` option, reasonable values are < 12.
+* gramtools commands after ``build`` use a `run directory`, which you can specify in ``quasimap``. This 
+  directory should contain all results for a given sample.
+
+Other processes
+`````````````````
+
+* In process **mergeVcfs**, we need to combine the vcfs from ``infer`` into one vcf using the program ``bcftools``.
+  ``bcftools`` requires compressed and indexed vcfs as input. You can compress using ``bgzip``.
+
+* The process **plots** uses the python3 script in P3/scripts/analyse_variant.py. Try running it on its own to see options.
+  The script uses the excellent python package
+  `scikit-allel <https://scikit-allel.readthedocs.io/en/stable/index.html>`_ for analysing genetic variation, if you're interested!
+
+Bonus Points
+---------------
+
+The dataset contains at least one sample which is resistant to a drug against tuberculosis (TB).
+Can you find which samples are resistant to which known TB drugs?
 
