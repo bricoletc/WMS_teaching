@@ -19,21 +19,11 @@ rule all:
             data = config['data'])
 
 
-rule gunzip:
-    input:
-        "{file}.fna.gz"
-    output:
-        "{file}.fna"
-    shell:
-        """
-        gunzip -c {input} > {output}
-        """
-
 rule cleanFasta:
     input:
         "{data}/genomes/{file}.fna"
     output:
-        "{data}/cleaned/{file}.fna"
+        ???
     shell:
         """
         python3 scripts/rename_multifasta_prefix.py \
@@ -45,7 +35,7 @@ rule cutupFasta:
     input:
         "{data}/cleaned/{file}.fna"
     output:
-        "{data}/cutup/{file}.fna"
+        ???
     params:
         size = 10000
     shell:
@@ -72,7 +62,7 @@ rule mergeData:
         wordcounts = expand("{{data}}/kmer/{file}_{{which}}.csv", 
                              file = samples.genome)
     output:
-        "{data}/merged/counts_{which}.csv"
+        ???
     run:
         import pandas
         import os
@@ -89,7 +79,7 @@ rule plot:
     input:
         "{data}/merged/counts_{which}.csv"
     output:
-        "{data}/plot/tsne_{which}.png"
+        ???
     conda:
         "envs/python3.yaml"
     script:
@@ -98,15 +88,14 @@ rule plot:
 rule stats:
     input:
         genome = "{data}/genomes/{genome}.fna",
-        cleaned = "{data}/cleaned/{genome}.fna"
+        cleaned = ???
     output:
         "{data}/stats/{genome}.summary"
     script: "scripts/nucfreq.py"
 
 rule summarize_stats:
     input:
-        expand("{{data}}/stats/{genome}.summary", 
-                genome = samples.genome)
+        ???
     output:
         "{data}/stats/summary.csv"
     shell:
