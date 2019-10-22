@@ -3,3 +3,13 @@ Fill in  a workflow
 ====================
 
 TBD
+=======
+Now that you know the syntax of Snakemake we want to test your 
+understanding of Snakemake before we come to our large task.
+
+For this we created a small workflow but it misses a few line of
+input and output of some rule.
+
+Please fill in the gaps.
+
+You can find the file in the P2 folder.
