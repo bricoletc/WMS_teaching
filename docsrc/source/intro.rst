@@ -32,6 +32,8 @@ Tool
 
 Here we will use Snakemake, a python package for writing worflows.
 
+Another really good tool is `nextflow <https://www.nextflow.io/>`_.
+
 .. rubric:: Footnotes
 
 .. [#f1] Throughout we call **processes** the basic units of work that go into pipelines.

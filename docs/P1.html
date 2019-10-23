@@ -36,14 +36,10 @@
             
   <div class="section" id="walkthrough">
 <h1>Walkthrough<a class="headerlink" href="#walkthrough" title="Permalink to this headline">¶</a></h1>
-<div class="contents local topic" id="contents">
-<ul class="simple">
-<li><a class="reference internal" href="#dag" id="id2">DAG</a></li>
-</ul>
-</div>
-<p>We go through the example from the snakemake <a class="reference external" href="https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html">tutorial</a>.</p>
+<p>We first take you through an introduction to the concepts and to snakemake.</p>
+<p>You can get the slides <a class="reference download internal" download="" href="_downloads/5c737f41d91afe921998b47bc0721489/P1_slides.pdf"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
 <div class="section" id="dag">
-<h2><a class="toc-backref" href="#id2">DAG</a><a class="headerlink" href="#dag" title="Permalink to this headline">¶</a></h2>
+<h2>DAG<a class="headerlink" href="#dag" title="Permalink to this headline">¶</a></h2>
 <p>A workflow can be represented as a Directed Acyclic Graph (DAG) where the nodes are processes and a directed edge connects process A to process B if B needs to run only after A has completed. Logically, this is because process B needs data as input which process A can provide!</p>
 <p>The graph is acyclic because a process cannot require itself to have run before running.</p>
 <p>Here is the DAG of our example workflow:</p>
@@ -76,7 +72,7 @@
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Part I: walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="P2.html">Part II: fill in the gaps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="P3.html">Part III: build a full workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="P3/P3.html">Part III: build a full workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
 

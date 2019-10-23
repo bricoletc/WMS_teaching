@@ -1,10 +1,9 @@
 Walkthrough
 ========================================
 
-.. contents::
-    :local:
+We first take you through an introduction to the concepts and to snakemake.
 
-We go through the example from the snakemake `tutorial <https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html>`_.
+You can get the slides :download:`here <img/P1_slides.pdf>`.
 
 DAG
 -------------

@@ -2,7 +2,7 @@
 Useful Resources
 =================
 
-
+The snakemake tutorial: https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html.
 
 
 
