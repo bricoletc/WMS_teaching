@@ -1,6 +1,6 @@
-=====================================
-Build your own workflow
-=====================================
+Regular workflow
+================
+
 
 The task
 ----------
@@ -15,12 +15,13 @@ The data
 ---------
 
 We have 10 read sets from `Mycobacterium tuberculosis`, a bacterial pathogen. We also have its reference genome and a VCF containing known variants.
+Have a look at the `P3/data` folder to see the data files.
 
 
 Desired workflow
 -----------------
 
-.. figure:: img/P3_dag.svg
+.. figure:: ../img/P3_dag.svg
 
     The steps of the workflow to implement.
     Two samples are shown here, but you have a total of 10 at your disposal.
@@ -52,7 +53,7 @@ Get information on available gramtools commands by running ``singularity exec P3
 Tips:
 
 * ``build`` takes a `kmer-size` option, reasonable values are < 12.
-* gramtools commands after ``build`` use a `run directory`, which you can specify in ``quasimap``. This 
+* gramtools commands after ``build`` use a `run directory`, which you create in the ``quasimap`` phase. This 
   directory should contain all results for a given sample.
 
 Other processes
@@ -64,10 +65,4 @@ Other processes
 * The process **plots** uses the python3 script in P3/scripts/analyse_variant.py. Try running it on its own to see options.
   The script uses the excellent python package
   `scikit-allel <https://scikit-allel.readthedocs.io/en/stable/index.html>`_ for analysing genetic variation, if you're interested!
-
-Bonus Points
----------------
-
-The dataset contains at least one sample which is resistant to a drug against tuberculosis (TB).
-Can you find which samples are resistant to which known TB drugs?
 

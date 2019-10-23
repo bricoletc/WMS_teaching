@@ -1,9 +1,6 @@
-=====================================
-Build your own workflow
-=====================================
+Regular workflow
+================
 
-.. contents::
-    :local:
 
 The task
 ----------
@@ -24,7 +21,7 @@ Have a look at the `P3/data` folder to see the data files.
 Desired workflow
 -----------------
 
-.. figure:: img/P3_dag.svg
+.. figure:: ../img/P3_dag.svg
 
     The steps of the workflow to implement.
     Two samples are shown here, but you have a total of 10 at your disposal.
@@ -69,55 +66,3 @@ Other processes
   The script uses the excellent python package
   `scikit-allel <https://scikit-allel.readthedocs.io/en/stable/index.html>`_ for analysing genetic variation, if you're interested!
 
-Bonus Points: improving the workflow
--------------------------------------
-
-Use the Snakemake readthedocs webpage for help!
-
-Logging
-`````````
-
-Add logging to one or more rules, to capture stdout and stderr in files.
-`relevant doc <https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#>`_
-
-Benchmarking
-`````````````
-
-Snakemake can measure CPU/wall clock time and RAM use of each rule.
-Find out how, and try it out on a rule.
-
-Restarts
-``````````
-
-What does Snakemake rely on to know where in the DAG to restart after a failed run?
-
-.. tip::
-    Search the doc for ``timestamps``.
-
-
-* Try modifying a file yourself such that Snakemake will re-run the workflow from rule `mergeVcfs`.
-* Find out the command-line option to re-run the workflow from any user-specified rule. `relevant doc <https://snakemake.readthedocs.io/en/stable/project_info/faq.html>`_
-
-
-Cluster
-`````````
-
-Figure out how to submit the workflow to the cluster. Note that cluster parameters should not go in the workflow itself, otherwise it is no longer independent of where it is run.
-`relevant doc <https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html#>`_
-
-For testing, ask us if there is cluster access, or if we can run it for you on EBI cluster (which uses LSF).
-
-Bonus Points: drug resistance prediction
--------------------------------------------
-
-The dataset contains at least one sample which is resistant to a drug against tuberculosis (TB).
-Can you find which samples are resistant to which known TB drugs?
-
-You can use the `mykrobe <https://github.com/mykrobe-tools/mykrobe>`_ program to do this. It is available in
-the singularity image::
-
-    singularity exec P3/WMS.img mykrobe
-
-Check the drug resistance predictions by `mykrobe` are present in the VCFs you produced using the workflow.
-
-Running mykrobe and making a report could be added to the workflow.

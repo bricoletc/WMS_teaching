@@ -15,14 +15,14 @@ and will recognise future situations where it will come in handy.
 
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :titlesonly:
 
     Setup <setup>
     Introduction <intro>
     Part I: walkthrough <P1>
     Part II: fill in the gaps <P2>
-    Part III: build a full workflow <P3>
+    Part III: build a full workflow <P3/P3>
     Resources <resources>
 
 
