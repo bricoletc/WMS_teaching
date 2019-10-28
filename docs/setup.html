@@ -50,21 +50,18 @@ $ cd WMS_teaching
 <p>Note: you can now view these pages locally using <code class="docutils literal notranslate"><span class="pre">gio</span> <span class="pre">open</span> <span class="pre">docs/index.html</span></code>, if you want.</p>
 <ol class="arabic" start="2">
 <li><p class="first">If we tell you it’s needed, download and extract this tarball: <a class="reference external" href="https://oc.ebi.ac.uk/s/C0VgbVAevgVk7wQ">https://oc.ebi.ac.uk/s/C0VgbVAevgVk7wQ</a> .
-We will give you the password.</p>
+We will give you the password. Once you have the tarball do:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv /path/to/tarball/WMS.tar ./
-$ tar -xf WMS.tar &amp;&amp; rm WMS.tar
+$ tar -xf WMS.tar
 $ mv WMS_stuff/data P3/data
 $ mv WMS_stuff/WMS.img P3/config
+$ mkdir P2/data
+$ mv WMS_stuff/P1_genomes.zip P2/data &amp;&amp; unzip P2/data/P1_genomes.zip
 </pre></div>
 </div>
 </li>
 </ol>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">It may be you do not need to do the downloading. In this case make sure you <strong>do</strong> still move <code class="docutils literal notranslate"><span class="pre">data</span></code> and <code class="docutils literal notranslate"><span class="pre">WMS.img</span></code>
-to <code class="docutils literal notranslate"><span class="pre">P3/data</span></code> and <code class="docutils literal notranslate"><span class="pre">P3/config</span></code>. This will reduce filepath hassle.</p>
-</div>
-<p>The tarball contains the dataset we’ll use <a class="reference internal" href="P3.html"><span class="doc">later</span></a> and the <a class="reference internal" href="resources.html#term-singularity"><span class="xref std std-term">singularity</span></a> image containing some software we will use.</p>
+<p>The tarball contains the datasets we’ll use <a class="reference internal" href="P3/P3.html"><span class="doc">later</span></a> and the <a class="reference internal" href="resources.html#term-singularity"><span class="xref std std-term">singularity</span></a> image containing some software we will use.</p>
 <ol class="arabic" start="3">
 <li><p class="first">Set up the <a class="reference internal" href="resources.html#term-conda"><span class="xref std std-term">conda</span></a> environment and activate it:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda create --name WMS -c bioconda -c conda-forge --file requirements.txt
@@ -100,7 +97,7 @@ $ conda activate WMS
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="P1.html">Part I: walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="P2.html">Part II: fill in the gaps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="P3.html">Part III: build a full workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="P3/P3.html">Part III: build a full workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
 

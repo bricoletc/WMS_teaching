@@ -46,6 +46,12 @@ Figure out how to submit the workflow to the cluster. Note that cluster paramete
 
 For testing, ask us if there is cluster access, or if we can run it for you on EBI cluster (which uses LSF).
 
+DAG
+````````
+Find out how to produce the DAG representing the workflow (``snakemake`` can do this).
+
+What is an alternative representation if the DAG is too crowded?
+
 Analysis improvement: Drug resistance prediction
 ------------------------------------------------- 
 

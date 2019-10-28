@@ -36,18 +36,6 @@
             
   <div class="section" id="walkthrough">
 <h1>Walkthrough<a class="headerlink" href="#walkthrough" title="Permalink to this headline">¶</a></h1>
-<p>We first take you through an introduction to the concepts and to snakemake.</p>
-<p>You can get the slides <a class="reference download internal" download="" href="_downloads/5c737f41d91afe921998b47bc0721489/P1_slides.pdf"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
-<div class="section" id="dag">
-<h2>DAG<a class="headerlink" href="#dag" title="Permalink to this headline">¶</a></h2>
-<p>A workflow can be represented as a Directed Acyclic Graph (DAG) where the nodes are processes and a directed edge connects process A to process B if B needs to run only after A has completed. Logically, this is because process B needs data as input which process A can provide!</p>
-<p>The graph is acyclic because a process cannot require itself to have run before running.</p>
-<p>Here is the DAG of our example workflow:</p>
-<div class="figure align-default" id="id1">
-<img alt="_images/P1_dag.png" src="_images/P1_dag.png" />
-<p class="caption"><span class="caption-text">Read data from two samples gets mapped, sorted, indexed and variant called.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-</div>
 </div>
 
 

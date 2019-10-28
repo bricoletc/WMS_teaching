@@ -36,6 +36,94 @@
   <div class="section" id="useful-resources">
 <h1>Useful Resources<a class="headerlink" href="#useful-resources" title="Permalink to this headline">¶</a></h1>
 <p>The snakemake tutorial: <a class="reference external" href="https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html">https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html</a>.</p>
+<div class="section" id="nextflow">
+<h2>Nextflow<a class="headerlink" href="#nextflow" title="Permalink to this headline">¶</a></h2>
+<p>Is a strong alternative workflow manager to snakemake, also with a lot of examples and users in bioinformatics.</p>
+<p>The key difference is that Nextflow does not compute the workflow DAG before running: instead of pre-computing all dependencies like snakemake, it runs
+as soon as it sees a process which can consume data it has at its disposal.</p>
+<p>To pass data around it relies on a more general concept of <em>channels</em> instead of <em>files</em>. Channels
+can be created inside and outside <em>processes</em> (the equivalent of snakemake <em>rules</em>) and can be manipulated in many ways in the workflow script.</p>
+<p>Here is our take on some differences. The more stars the better.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="29%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">What I want</th>
+<th class="head">snakemake</th>
+<th class="head">nextflow</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Easy scripting</td>
+<td>[**] Python!</td>
+<td>[*] Java scripting derivative: Groovy</td>
+</tr>
+<tr class="row-odd"><td>Getting going fast</td>
+<td>[**] Rules and files</td>
+<td>[*] Processes and channels</td>
+</tr>
+<tr class="row-even"><td>Visualise DAG</td>
+<td>[**] Get before the run</td>
+<td>[*] Get only after the run</td>
+</tr>
+<tr class="row-odd"><td>Good Documentation</td>
+<td>[**]</td>
+<td>[*]</td>
+</tr>
+<tr class="row-even"><td>Start workflow quickly</td>
+<td>[*] Needs to compute DAG</td>
+<td>[**] No need for DAG</td>
+</tr>
+<tr class="row-odd"><td>Clean working directory <a class="footnote-reference" href="#f1" id="id1">[1]</a></td>
+<td>[*] Execution where files are</td>
+<td>[**] Execution in isolated directories</td>
+</tr>
+<tr class="row-even"><td>Getting run statistics</td>
+<td>[*] html reports, benchmark rule</td>
+<td>[**] html reports, <code class="docutils literal notranslate"><span class="pre">--with-trace</span></code></td>
+</tr>
+<tr class="row-odd"><td>Data communication</td>
+<td>[*] always files or directories</td>
+<td>[**] Manipulate channels with <code class="docutils literal notranslate"><span class="pre">operators</span></code></td>
+</tr>
+<tr class="row-even"><td>Rerun where I stopped</td>
+<td>[**]</td>
+<td>[**]</td>
+</tr>
+<tr class="row-odd"><td>Environment control <a class="footnote-reference" href="#f2" id="id2">[2]</a></td>
+<td>[**]</td>
+<td>[**]</td>
+</tr>
+<tr class="row-even"><td>Execution abstraction <a class="footnote-reference" href="#f3" id="id3">[3]</a></td>
+<td>[**]</td>
+<td>[**]</td>
+</tr>
+</tbody>
+</table>
+<p>Ultimately both are great and actively developed, and we do encourage you to have a look at nextflow also.</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>nextflow does not rely on file names to link processes and runs each process in its own working directory: thus you can names files whatever you like
+in the workflow script. snakemake can use <code class="docutils literal notranslate"><span class="pre">shadow</span></code> directive to execute a rule in this way.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>run in conda environment, in docker/singularity image…</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>run on clusters, AWS…</td></tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="glossary">
 <h2>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h2>
 <dl class="glossary docutils">

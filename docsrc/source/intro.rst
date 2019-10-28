@@ -4,7 +4,7 @@ Introduction
 
 We first take you through an introduction to the concepts and to snakemake.
 
-You can get the slides :download:`here <img/Intro_slides.pdf>`.
+You can **get the slides** :download:`here <img/Intro_slides.pdf>`.
 
 Below is a short written introduction, most of which is covered in the slides.
 
@@ -39,6 +39,7 @@ Tool
 Here we will use Snakemake, a python package for writing worflows.
 
 Another really good tool is `nextflow <https://www.nextflow.io/>`_.
+We have a few words on it :doc:`here <resources>`.
 
 .. rubric:: Footnotes
 
