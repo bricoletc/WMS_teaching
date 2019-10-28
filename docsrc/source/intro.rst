@@ -2,6 +2,12 @@
 Introduction
 =============
 
+We first take you through an introduction to the concepts and to snakemake.
+
+You can get the slides :download:`here <img/Intro_slides.pdf>`.
+
+Below is a short written introduction, most of which is covered in the slides.
+
 Motivation
 -------------
 
@@ -37,5 +43,3 @@ Another really good tool is `nextflow <https://www.nextflow.io/>`_.
 .. rubric:: Footnotes
 
 .. [#f1] Throughout we call **processes** the basic units of work that go into pipelines.
-
-
