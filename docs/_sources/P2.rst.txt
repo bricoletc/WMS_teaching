@@ -2,8 +2,6 @@
 Fill in  a workflow
 ====================
 
-TBD
-=======
 Now that you know the syntax of Snakemake we want to test your 
 understanding of Snakemake before we come to our large task.
 
@@ -12,4 +10,12 @@ input and output of some rule.
 
 Please fill in the gaps.
 
-You can find the file in the P2 folder.
+You can find the file in the P2 folder of the git.
+
+
+In the end you should be able to run the workflow without issues
+if you use snakemake with conda to launch it:
+
+.. code-block:: shell
+
+    snakemake --use-conda -j 4

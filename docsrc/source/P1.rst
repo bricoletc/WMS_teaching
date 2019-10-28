@@ -1,11 +1,11 @@
 Walkthrough
 ========================================
 
-We want to shortly go trough this workflow and make
+We want to shortly go through this workflow and make
 sure everyone understands what would happen if we were
 to execute this using snakemake:
 
-... code-block:: python3
+.. code-block:: python3
 
     # number of files to create
     n = 3

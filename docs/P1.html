@@ -36,6 +36,60 @@
             
   <div class="section" id="walkthrough">
 <h1>Walkthrough<a class="headerlink" href="#walkthrough" title="Permalink to this headline">¶</a></h1>
+<p>We want to shortly go through this workflow and make
+sure everyone understands what would happen if we were
+to execute this using snakemake:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># number of files to create</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c1"># the first rule is defining for what will happen</span>
+<span class="c1"># its usually called all and the input</span>
+<span class="c1"># specifies all file paths that should exists</span>
+<span class="c1"># AFTER the pipeline is finished</span>
+<span class="n">rule</span> <span class="nb">all</span><span class="p">:</span>
+    <span class="nb">input</span><span class="p">:</span>
+        <span class="c1"># expand is a snakemake command</span>
+        <span class="c1"># it is used to create file paths</span>
+        <span class="c1"># based on patterns and placeholders.</span>
+        <span class="c1"># Here we create n file paths for n</span>
+        <span class="c1"># output files.</span>
+        <span class="n">expand</span><span class="p">(</span><span class="s2">&quot;data/capitalized/</span><span class="si">{filenumber}</span><span class="s2">.txt&quot;</span><span class="p">,</span>
+               <span class="n">filenumber</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+
+<span class="c1"># this rule is a dummy rule that produces input files</span>
+<span class="c1"># for us</span>
+<span class="c1"># In reality we would get input files from the internet</span>
+<span class="c1"># or from our local directories</span>
+<span class="n">rule</span> <span class="n">createFile</span><span class="p">:</span>
+    <span class="c1"># This rule produces output files</span>
+    <span class="c1"># With path names of this pattern</span>
+    <span class="n">output</span><span class="p">:</span>
+        <span class="s2">&quot;data/textfiles/</span><span class="si">{filenumber}</span><span class="s2">.txt&quot;</span>
+    <span class="c1"># In this section we can have shell commands</span>
+    <span class="c1"># This could be anything you would write in</span>
+    <span class="c1"># your command prompt.</span>
+    <span class="n">shell</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        echo &quot;this could be any string&quot; &gt; {output}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<span class="c1"># This is our second rule</span>
+<span class="c1"># It takes a text file and capitalizes it</span>
+<span class="n">rule</span> <span class="n">capitalizeFile</span><span class="p">:</span>
+    <span class="c1"># This is the input location we want to work on</span>
+    <span class="nb">input</span><span class="p">:</span>
+        <span class="s2">&quot;data/textfiles/</span><span class="si">{filenumber}</span><span class="s2">.txt&quot;</span>
+    <span class="c1"># and this is the output we&#39;ll create</span>
+    <span class="n">output</span><span class="p">:</span>
+        <span class="s2">&quot;data/capitalized/</span><span class="si">{filenumber}</span><span class="s2">.txt&quot;</span>
+    <span class="n">run</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">as</span> <span class="n">inputfile</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outputfile</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">inputfile</span><span class="p">:</span>
+                <span class="n">outputfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+
+<span class="c1"># Run this script by calling snakemake</span>
+</pre></div>
+</div>
 </div>
 
 
