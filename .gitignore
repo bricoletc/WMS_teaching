@@ -5,6 +5,8 @@ TODOs.rst
 venv
 .snakemake
 docsrc/build
+P2/data/*
 P3/results/*
 P3/data/*
 P3/solutions/encrypted_Snakefile
+Snakefile

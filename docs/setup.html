@@ -39,38 +39,35 @@
 <p>The first thing to do is open a terminal and make sure these commands are available: <code class="docutils literal notranslate"><span class="pre">git</span></code>, <code class="docutils literal notranslate"><span class="pre">conda</span></code>, <code class="docutils literal notranslate"><span class="pre">singularity</span></code>.</p>
 <p>They should output help messages.  If they don’t please let us know.</p>
 <p>Now:</p>
-<ol class="arabic">
-<li><p class="first">Download the git repository and move into it:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/bricoletc/WMS_teaching
-$ cd WMS_teaching
+<ol class="arabic simple">
+<li>Download the git repository and move into it</li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/bricoletc/WMS_teaching
+<span class="nb">cd</span> WMS_teaching
 </pre></div>
 </div>
-</li>
-</ol>
 <p>Note: you can now view these pages locally using <code class="docutils literal notranslate"><span class="pre">gio</span> <span class="pre">open</span> <span class="pre">docs/index.html</span></code>, if you want.</p>
-<ol class="arabic" start="2">
-<li><p class="first">If we tell you it’s needed, download and extract this tarball: <a class="reference external" href="https://oc.ebi.ac.uk/s/C0VgbVAevgVk7wQ">https://oc.ebi.ac.uk/s/C0VgbVAevgVk7wQ</a> .
-We will give you the password. Once you have the tarball do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mv /path/to/tarball/WMS.tar ./
-$ tar -xf WMS.tar
-$ mv WMS_stuff/data P3/data
-$ mv WMS_stuff/WMS.img P3/config
-$ mkdir P2/data
-$ mv WMS_stuff/P1_genomes.zip P2/data &amp;&amp; unzip P2/data/P1_genomes.zip
+<ol class="arabic simple" start="2">
+<li>If we tell you it’s needed, download and extract this tarball: <a class="reference external" href="https://oc.ebi.ac.uk/s/C0VgbVAevgVk7wQ">https://oc.ebi.ac.uk/s/C0VgbVAevgVk7wQ</a> .
+We will give you the password. Once you have the tarball do:</li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mv /path/to/tarball/WMS.tar ./
+tar -xf WMS.tar
+mv WMS_stuff/data P3/data
+mv WMS_stuff/WMS.img P3/config
+mkdir P2/data P2/data/genomes
+unzip -d P2/data/genomes WMS_stuff/P1_genomes.zip
 </pre></div>
 </div>
-</li>
-</ol>
 <p>The tarball contains the datasets we’ll use <a class="reference internal" href="P3/P3.html"><span class="doc">later</span></a> and the <a class="reference internal" href="resources.html#term-singularity"><span class="xref std std-term">singularity</span></a> image containing some software we will use.</p>
-<ol class="arabic" start="3">
-<li><p class="first">Set up the <a class="reference internal" href="resources.html#term-conda"><span class="xref std std-term">conda</span></a> environment and activate it:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda create --name WMS -c bioconda -c conda-forge --file requirements.txt
-(Proceed? [y])
-$ conda activate WMS
+<ol class="arabic simple" start="3">
+<li>Set up the <a class="reference internal" href="resources.html#term-conda"><span class="xref std std-term">conda</span></a> environment and activate it</li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda create --name WMS -c bioconda -c conda-forge --file requirements.txt
+<span class="o">(</span>Proceed? <span class="o">[</span>y<span class="o">])</span>
+conda activate WMS
 </pre></div>
 </div>
-</li>
-</ol>
 <p>This provides the python libraries and some of the tools we will use.</p>
 <p>Done!</p>
 </div>
