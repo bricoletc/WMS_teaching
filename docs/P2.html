@@ -38,15 +38,18 @@
 <h1>Fill in  a workflow<a class="headerlink" href="#fill-in-a-workflow" title="Permalink to this headline">¶</a></h1>
 <p>Now that you know the syntax of Snakemake we want to test your
 understanding of Snakemake before we come to our large task.</p>
-<p>For this we created a small workflow but it misses a few line of
-input and output of some rule.</p>
-<p>Please fill in the gaps.</p>
-<p>You can find the file in the P2 folder of the git.</p>
+<p>For this we created two small workflows which miss a few pieces of information
+in some rules.</p>
+<p>Please fill in the gaps inside the P2 folder of the git repo.</p>
+<p>You should start with the fixme file in the <code class="docutils literal notranslate"><span class="pre">easier</span></code> folder first- the <code class="docutils literal notranslate"><span class="pre">harder</span></code> one has a more complex workflow
+and is not the primary goal.</p>
 <p>In the end you should be able to run the workflow without issues
-if you use snakemake with conda to launch it:</p>
+if you use snakemake to launch it:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>snakemake --use-conda -j <span class="m">4</span>
 </pre></div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--use-conda</span></code> directive is not actually needed here, but can be used to build custom conda environments for specific rules.
+In this case the environment we created contains everything needed for all rules already.</p>
 </div>
 
 

@@ -5,17 +5,20 @@ Fill in  a workflow
 Now that you know the syntax of Snakemake we want to test your 
 understanding of Snakemake before we come to our large task.
 
-For this we created a small workflow but it misses a few line of
-input and output of some rule.
+For this we created two small workflows which miss a few pieces of information
+in some rules.
 
-Please fill in the gaps.
+Please fill in the gaps inside the P2 folder of the git repo.
 
-You can find the file in the P2 folder of the git.
-
+You should start with the fixme file in the ``easier`` folder first- the ``harder`` one has a more complex workflow
+and is not the primary goal.
 
 In the end you should be able to run the workflow without issues
-if you use snakemake with conda to launch it:
+if you use snakemake to launch it:
 
 .. code-block:: shell
 
     snakemake --use-conda -j 4
+
+The ``--use-conda`` directive is not actually needed here, but can be used to build custom conda environments for specific rules.
+In this case the environment we created contains everything needed for all rules already.
