@@ -6,7 +6,9 @@ venv
 .snakemake
 docsrc/build
 P2/data/*
+*_solution
 P3/results/*
 P3/data/*
 P3/solutions/encrypted_Snakefile
+WMS_stuff
 Snakefile
