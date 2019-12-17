@@ -1,9 +1,11 @@
 # Use this file to create an environment using:
 # $ conda create --name WMS -c bioconda -c conda-forge --file <this file>
 bcftools==1.9
+biopython==1.74
 htslib==1.9
 pandas==0.25.1
-pygraphviz==1.3
+#pygraphviz==1.3
 scikit-allel==1.2.1
+scikit-learn==0.22
 seaborn==0.9.0
 snakemake-minimal==5.7.0
