@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Build your own workflow &#8212; WMS_teaching 0.1 documentation</title>
+    <title>Setup &#8212; WMS_teaching 0.1 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -14,8 +14,6 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Build a full workflow" href="Workflow.html" />
-    <link rel="prev" title="Fill in a workflow" href="../P2.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -32,17 +30,42 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="build-your-own-workflow">
-<h1>Build your own workflow<a class="headerlink" href="#build-your-own-workflow" title="Permalink to this headline">¶</a></h1>
-<p>There are two parts to this, and the second is only intended for
-going further with Snakemake or with the data.</p>
-<p>Completing the first part is already <strong>great</strong>!</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Workflow.html">Regular workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Further.html">Going further</a></li>
-</ul>
+  <div class="section" id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
+<p>The first thing to do is open a terminal and make sure these commands are available: <code class="docutils literal notranslate"><span class="pre">git</span></code>, <code class="docutils literal notranslate"><span class="pre">conda</span></code>, <code class="docutils literal notranslate"><span class="pre">singularity</span></code>.</p>
+<p>They should output help messages.  If they don’t please let us know.</p>
+<p>Now:</p>
+<ol class="arabic simple">
+<li><p>Download the git repository and move into it</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/bricoletc/WMS_teaching
+<span class="nb">cd</span> WMS_teaching
+</pre></div>
 </div>
+<p>Note: you can now view these pages locally using <code class="docutils literal notranslate"><span class="pre">gio</span> <span class="pre">open</span> <span class="pre">docs/index.html</span></code>, if you want.</p>
+<ol class="arabic simple" start="2">
+<li><p>If we tell you it’s needed, download and extract this tarball: <a class="reference external" href="https://oc.ebi.ac.uk/s/C0VgbVAevgVk7wQ">https://oc.ebi.ac.uk/s/C0VgbVAevgVk7wQ</a> .
+We will give you the password. Once you have the tarball do:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mv /path/to/tarball/WMS.tar ./
+tar -xf WMS.tar
+mv WMS_stuff/data P3/data
+mv WMS_stuff/WMS.img P3/config
+mkdir P2/data P2/data/genomes
+unzip -d P2/data/genomes WMS_stuff/P1_genomes.zip
+</pre></div>
+</div>
+<p>The tarball contains the datasets we’ll use <span class="xref std std-doc">later</span> and the <a class="reference internal" href="../resources.html#term-singularity"><span class="xref std std-term">singularity</span></a> image containing some software we will use.</p>
+<ol class="arabic simple" start="3">
+<li><p>Set up the <a class="reference internal" href="../resources.html#term-conda"><span class="xref std std-term">conda</span></a> environment and activate it</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda create --name WMS -c bioconda -c conda-forge --file requirements.txt
+<span class="o">(</span>Proceed? <span class="o">[</span>y<span class="o">])</span>
+conda activate WMS
+</pre></div>
+</div>
+<p>This provides the python libraries and some of the tools we will use.</p>
+<p>Done!</p>
 </div>
 
 
@@ -62,12 +85,12 @@ going further with Snakemake or with the data.</p>
 
 
 <h3>Navigation</h3>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../P1.html">Part I: walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../P2.html">Part II: fill in the gaps</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Part III: build a full workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../P3/P3.html">Part III: build a full workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
 </ul>
 
@@ -75,8 +98,6 @@ going further with Snakemake or with the data.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="../P2.html" title="previous chapter">Fill in  a workflow</a></li>
-      <li>Next: <a href="Workflow.html" title="next chapter">Build a full workflow</a></li>
   </ul></li>
 </ul>
 </div>
@@ -110,7 +131,7 @@ going further with Snakemake or with the data.</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/P3/P3.rst.txt"
+      <a href="../_sources/old/setup.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

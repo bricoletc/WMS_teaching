@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Build a full workflow &#8212; WMS_teaching 0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Going further" href="Further.html" />
+    <link rel="prev" title="Build your own workflow" href="P3.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="build-a-full-workflow">
+<h1>Build a full workflow<a class="headerlink" href="#build-a-full-workflow" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-task">
+<h2>The task<a class="headerlink" href="#the-task" title="Permalink to this headline">¶</a></h2>
+<p>We want to perform read mapping and variant genotyping against a genome graph, a data structure which contains known genetic variation observed in a population or a species.</p>
+<p>We will use <a class="reference external" href="https://github.com/iqbal-lab-org/gramtools">gramtools</a> to do this, which I develop.</p>
+<p>Let’s hope we don’t find any bugs along the way :-)</p>
+</div>
+<div class="section" id="the-data">
+<h2>The data<a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a></h2>
+<p>We have 5 read sets from <cite>Mycobacterium tuberculosis</cite>, a bacterial pathogen. We also have its reference genome and a VCF containing known variants.
+The data files are in <cite>P3/data</cite>.</p>
+</div>
+<div class="section" id="desired-workflow">
+<h2>Desired workflow<a class="headerlink" href="#desired-workflow" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="id1">
+<img alt="../_images/P3_dag.svg" src="../_images/P3_dag.svg" /><p class="caption"><span class="caption-text">The steps of the workflow to implement.
+Two samples are shown here, but you have a total of 10 at your disposal.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Start by using only two samples, as in the provided <cite>config/samples.tsv</cite>.</p>
+<p>Then when your workflow works with two samples, run on all 10 using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="n">config</span><span class="o">/</span><span class="n">all_samples</span><span class="o">.</span><span class="n">tsv</span> <span class="n">config</span><span class="o">/</span><span class="n">samples</span><span class="o">.</span><span class="n">tsv</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="key-information">
+<h2>Key information<a class="headerlink" href="#key-information" title="Permalink to this headline">¶</a></h2>
+<p>Below is some key information to help you write the workflow.</p>
+<div class="section" id="starting-point">
+<h3>Starting point<a class="headerlink" href="#starting-point" title="Permalink to this headline">¶</a></h3>
+<p>Here is the Snakefile we start from:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">configfile</span><span class="p">:</span> <span class="s2">&quot;config/config.yaml&quot;</span>
+
+<span class="n">samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;config/samples.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">rule</span> <span class="nb">all</span><span class="p">:</span>
+	<span class="nb">input</span><span class="p">:</span>
+		<span class="n">expand</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{results}</span><span class="s2">/nuc_diversity.pdf&quot;</span><span class="p">,</span><span class="n">results</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span>
+
+<span class="n">rule</span> <span class="n">build</span><span class="p">:</span>
+	<span class="nb">input</span><span class="p">:</span>
+		<span class="n">ref</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{data}</span><span class="s2">/TB_ref.fa&quot;</span><span class="p">,</span>
+		<span class="n">vcf</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{data}</span><span class="s2">/known_variants.vcf.gz&quot;</span>
+	<span class="n">output</span><span class="p">:</span>
+		<span class="n">directory</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{data}</span><span class="s2">/gramtools/build&quot;</span><span class="p">)</span>
+	<span class="n">params</span><span class="p">:</span>
+		<span class="c1">#?</span>
+	<span class="n">singularity</span><span class="p">:</span>
+		<span class="n">config</span><span class="p">[</span><span class="s2">&quot;?&quot;</span><span class="p">]</span>
+	<span class="n">shell</span><span class="p">:</span>
+		<span class="c1">#?</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gramtools-commands">
+<h3>Gramtools commands<a class="headerlink" href="#gramtools-commands" title="Permalink to this headline">¶</a></h3>
+<p>Get information on available gramtools commands by running <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">exec</span> <span class="pre">P3/config/WMS.img</span> <span class="pre">gramtools</span></code></p>
+<p>Tips:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">build</span></code> takes a <cite>kmer-size</cite> option, reasonable values are &lt; 12.</p></li>
+<li><p>gramtools commands after <code class="docutils literal notranslate"><span class="pre">build</span></code> use a <cite>run directory</cite>, which you create in the <code class="docutils literal notranslate"><span class="pre">quasimap</span></code> phase. This
+directory should contain all results for a given sample.</p></li>
+</ul>
+</div>
+<div class="section" id="other-processes">
+<h3>Other processes<a class="headerlink" href="#other-processes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>In process <strong>mergeVcfs</strong>, we need to combine the vcfs from <code class="docutils literal notranslate"><span class="pre">infer</span></code> into one vcf using the program <code class="docutils literal notranslate"><span class="pre">bcftools</span></code>.
+<code class="docutils literal notranslate"><span class="pre">bcftools</span></code> requires compressed and indexed vcfs as input. You can compress using <code class="docutils literal notranslate"><span class="pre">bgzip</span></code>.</p></li>
+<li><p>The process <strong>plots</strong> uses the python3 script in P3/scripts/analyse_variant.py. Try running it on its own to see options.
+The script uses the excellent python package
+<a class="reference external" href="https://scikit-allel.readthedocs.io/en/stable/index.html">scikit-allel</a> for analysing genetic variation, if you’re interested!</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">WMS_teaching</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../P1.html">Part I: walkthrough</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../P2.html">Part II: fill in the gaps</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="P3.html">Part III: build a full workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="P3.html">Build your own workflow</a><ul>
+      <li>Previous: <a href="P3.html" title="previous chapter">Build your own workflow</a></li>
+      <li>Next: <a href="Further.html" title="next chapter">Going further</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Brice Letcher & Paul Saary.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/P3/Workflow.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

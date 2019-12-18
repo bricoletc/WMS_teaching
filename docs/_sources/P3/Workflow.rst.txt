@@ -1,5 +1,5 @@
-Regular workflow
-================
+Build a full workflow
+======================
 
 
 The task
@@ -7,15 +7,15 @@ The task
 
 We want to perform read mapping and variant genotyping against a genome graph, a data structure which contains known genetic variation observed in a population or a species.
 
-We will use `gramtools <https://github.com/iqbal-lab-org/gramtools>`_ to do this. It is not the fastest and it is not the most complete, but it is the one that Brice's PhD is all about.
+We will use `gramtools <https://github.com/iqbal-lab-org/gramtools>`_ to do this, which I develop. 
 
 Let's hope we don't find any bugs along the way :-)
 
 The data
 ---------
 
-We have 10 read sets from `Mycobacterium tuberculosis`, a bacterial pathogen. We also have its reference genome and a VCF containing known variants.
-Have a look at the `P3/data` folder to see the data files.
+We have 5 read sets from `Mycobacterium tuberculosis`, a bacterial pathogen. We also have its reference genome and a VCF containing known variants.
+The data files are in `P3/data`.
 
 
 Desired workflow

@@ -3,13 +3,13 @@ Build your own workflow
 =====================================
 
 There are two parts to this, and the second is only intended for 
-if you happen to have more time or want to do more in your own time.
+going further with Snakemake or with the data.
 
-Completing the first part would already be **great**!
+Completing the first part is already **great**!
 
 .. toctree::
     :maxdepth: 1
 
-    Regular workflow <Regular>
-    Going deeper <Bonus>
+    Regular workflow <Workflow>
+    Going further <Further>
 

@@ -3,7 +3,7 @@ Fill in  a workflow
 ====================
 
 Now that you know the syntax of Snakemake we want to test your 
-understanding of Snakemake before we come to our large task.
+understanding of Snakemake before we come to a larger project.
 
 For this we created two small workflows which miss a few pieces of information
 in some rules.

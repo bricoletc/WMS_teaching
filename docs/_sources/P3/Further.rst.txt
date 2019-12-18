@@ -1,4 +1,4 @@
-A more in-depth view
+Going further
 =====================
 
 You can first work either on improving the workflow or on answering a biological question.

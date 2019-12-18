@@ -1,11 +1,9 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>Setup &#8212; WMS_teaching 0.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -36,40 +34,50 @@
             
   <div class="section" id="setup">
 <h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
-<p>The first thing to do is open a terminal and make sure these commands are available: <code class="docutils literal notranslate"><span class="pre">git</span></code>, <code class="docutils literal notranslate"><span class="pre">conda</span></code>, <code class="docutils literal notranslate"><span class="pre">singularity</span></code>.</p>
-<p>They should output help messages.  If they don’t please let us know.</p>
-<p>Now:</p>
-<ol class="arabic simple">
-<li>Download the git repository and move into it</li>
-</ol>
+<p>Requirements:</p>
+<ul class="simple">
+<li><p>python3</p></li>
+<li><p>git</p></li>
+<li><p>bcftools</p></li>
+<li><p>bgzip</p></li>
+</ul>
+<div class="section" id="step-1-code-environment">
+<h2>Step 1: Code &amp; Environment<a class="headerlink" href="#step-1-code-environment" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/bricoletc/WMS_teaching
 <span class="nb">cd</span> WMS_teaching
 </pre></div>
 </div>
-<p>Note: you can now view these pages locally using <code class="docutils literal notranslate"><span class="pre">gio</span> <span class="pre">open</span> <span class="pre">docs/index.html</span></code>, if you want.</p>
-<ol class="arabic simple" start="2">
-<li>If we tell you it’s needed, download and extract this tarball: <a class="reference external" href="https://oc.ebi.ac.uk/s/C0VgbVAevgVk7wQ">https://oc.ebi.ac.uk/s/C0VgbVAevgVk7wQ</a> .
-We will give you the password. Once you have the tarball do:</li>
-</ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mv /path/to/tarball/WMS.tar ./
-tar -xf WMS.tar
-mv WMS_stuff/data P3/data
-mv WMS_stuff/WMS.img P3/config
-mkdir P2/data P2/data/genomes
-unzip -d P2/data/genomes WMS_stuff/P1_genomes.zip
+<div class="section" id="venv-and-pip-recommended">
+<h3>Venv and pip (recommended)<a class="headerlink" href="#venv-and-pip-recommended" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3 -m venv venv <span class="o">&amp;&amp;</span> <span class="nb">source</span> venv/bin/activate
+pip install -r pip_requirements.txt
 </pre></div>
 </div>
-<p>The tarball contains the datasets we’ll use <a class="reference internal" href="P3/P3.html"><span class="doc">later</span></a> and the <a class="reference internal" href="resources.html#term-singularity"><span class="xref std std-term">singularity</span></a> image containing some software we will use.</p>
-<ol class="arabic simple" start="3">
-<li>Set up the <a class="reference internal" href="resources.html#term-conda"><span class="xref std std-term">conda</span></a> environment and activate it</li>
-</ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda create --name WMS -c bioconda -c conda-forge --file requirements.txt
+<p>Now install bcftools and bgzip. For eg on Debian-like systems: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">bcftools</span> <span class="pre">tabix</span></code></p>
+</div>
+<div class="section" id="alternative-conda">
+<h3>Alternative: <a class="reference internal" href="resources.html#term-conda"><span class="xref std std-term">Conda</span></a><a class="headerlink" href="#alternative-conda" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda create --name WMS -c bioconda -c conda-forge --file conda-requirements.txt
 <span class="o">(</span>Proceed? <span class="o">[</span>y<span class="o">])</span>
 conda activate WMS
+
+pip install <span class="k">$(</span>grep <span class="s2">&quot;gramtools&quot;</span> pip-requirements.txt<span class="k">)</span>
 </pre></div>
 </div>
-<p>This provides the python libraries and some of the tools we will use.</p>
-<p>Done!</p>
+</div>
+</div>
+<div class="section" id="step-2-data">
+<h2>Step 2: Data<a class="headerlink" href="#step-2-data" title="Permalink to this headline">¶</a></h2>
+<p>Download this tarball: <a class="reference external" href="https://oc.ebi.ac.uk/s/4liZWUYp1kFluCY">https://oc.ebi.ac.uk/s/4liZWUYp1kFluCY</a> .</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mv /path/to/tarball/WMS.tar.gz ./
+tar -xf WMS.tar.gz
+cp -r data_WMS/P3/* P3/data
+mkdir P2/data P2/data/genomes
+cp data_WMS/P2/* P2/data/genomes
+</pre></div>
+</div>
+<p>The tarball contains the datasets we’ll use in <a class="reference internal" href="P2.html"><span class="doc">P2</span></a> and <a class="reference internal" href="P3/P3.html"><span class="doc">P3</span></a>.</p>
+</div>
 </div>
 
 
@@ -133,7 +141,7 @@ conda activate WMS
       &copy;2019, Brice Letcher & Paul Saary.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
