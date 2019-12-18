@@ -1,6 +1,7 @@
 # Use this file to create an environment using:
 # $ conda create --name WMS -c bioconda -c conda-forge --file <this file>
 biopython==1.74
+git+https://github.com/iqbal-lab-org/gramtools/@b95321b#egg=gramtools
 pandas==0.25.1
 #pygraphviz==1.3
 scikit-allel==1.2.1
