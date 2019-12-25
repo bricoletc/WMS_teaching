@@ -6,7 +6,9 @@ samples = pd.read_csv("config/samples.tsv", sep="\t")
 
 rule all:
 	input:
-		expand("{results}/nuc_diversity.pdf",results=config["results"])
+		"{data}/gramtools/build"
+
+		#expand("{results}/nuc_diversity.pdf",results=config["results"]) # The final expected result
 
 rule build:
 	input:
@@ -15,8 +17,6 @@ rule build:
 	output:
 		directory("{data}/gramtools/build")
 	params:
-		#?
-	singularity:
-		config["?"]
+		#k = ???
 	shell:
-		#?
+		#???

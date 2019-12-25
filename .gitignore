@@ -1,15 +1,27 @@
-TODOs.rst
+# vim
 *~
 *.swp
+
+# images
 *.img
+
+# environment
 venv
+
+# test runs
 .snakemake
+
+# doc build
 docsrc/build
-P2/data/*
+
+
+# workflow solutions 
+P*/Snakefile
 *_solution
+P3/solutions/encrypted_Snakefile
+
+# data and results
 preparations/
 P3/results/*
+P2/data/*
 P3/data/*
-P3/solutions/encrypted_Snakefile
-WMS_stuff
-Snakefile
