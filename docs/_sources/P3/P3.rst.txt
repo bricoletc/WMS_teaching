@@ -1,5 +1,5 @@
 =====================================
-Build your own workflow
+Build a full workflow
 =====================================
 
 There are two parts to this, and the second is only intended for 

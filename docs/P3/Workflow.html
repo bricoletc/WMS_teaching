@@ -15,7 +15,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Going further" href="Further.html" />
-    <link rel="prev" title="Build your own workflow" href="P3.html" />
+    <link rel="prev" title="Build a full workflow" href="P3.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -37,34 +37,79 @@
 <div class="section" id="the-task">
 <h2>The task<a class="headerlink" href="#the-task" title="Permalink to this headline">¶</a></h2>
 <p>We want to perform read mapping and variant genotyping against a genome graph, a data structure which contains known genetic variation observed in a population or a species.</p>
-<p>We will use <a class="reference external" href="https://github.com/iqbal-lab-org/gramtools">gramtools</a> to do this, which I develop.</p>
-<p>Let’s hope we don’t find any bugs along the way :-)</p>
+<p>We will use <a class="reference external" href="https://github.com/iqbal-lab-org/gramtools">gramtools</a> to do this, which Brice develops.</p>
 </div>
 <div class="section" id="the-data">
 <h2>The data<a class="headerlink" href="#the-data" title="Permalink to this headline">¶</a></h2>
-<p>We have 5 read sets from <cite>Mycobacterium tuberculosis</cite>, a bacterial pathogen. We also have its reference genome and a VCF containing known variants.
-The data files are in <cite>P3/data</cite>.</p>
+<p>We have 5 read sets from <cite>Mycobacterium tuberculosis</cite>, a bacterial pathogen. We also have its reference genome and a file describing known variants, in the <a class="reference external" href="https://github.com/samtools/hts-specs">VCF</a> format. The data files are in <cite>P3/data</cite>.</p>
+<p>We will build a genome graph, map the reads to it, and find out which samples have which variants.</p>
 </div>
 <div class="section" id="desired-workflow">
 <h2>Desired workflow<a class="headerlink" href="#desired-workflow" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-default" id="id1">
-<img alt="../_images/P3_dag.svg" src="../_images/P3_dag.svg" /><p class="caption"><span class="caption-text">The steps of the workflow to implement.
-Two samples are shown here, but you have a total of 10 at your disposal.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Start by using only two samples, as in the provided <cite>config/samples.tsv</cite>.</p>
-<p>Then when your workflow works with two samples, run on all 10 using:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="n">config</span><span class="o">/</span><span class="n">all_samples</span><span class="o">.</span><span class="n">tsv</span> <span class="n">config</span><span class="o">/</span><span class="n">samples</span><span class="o">.</span><span class="n">tsv</span>
-</pre></div>
+<div class="figure align-default" id="id4">
+<img alt="../_images/P3_dag.svg" src="../_images/P3_dag.svg" /><p class="caption"><span class="caption-text">The steps of the workflow to implement. Only two samples are shown.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </div>
+<div class="section" id="steps-explained">
+<h2>Steps explained<a class="headerlink" href="#steps-explained" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 40%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Step</p></th>
+<th class="head"><p>Purpose</p></th>
+<th class="head"><p>Command</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#build"><span class="std std-ref">build</span></a></p></td>
+<td><p>Build a genome graph from genome reference + variants</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gramtools</span> <span class="pre">build</span> <span class="pre">{options}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#quasimap"><span class="std std-ref">quasimap</span></a></p></td>
+<td><p>Map reads from a sample to a genome graph</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gramtools</span> <span class="pre">quasimap</span> <span class="pre">{options}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>infer</p></td>
+<td><p>Infer which variants the mapped sample has</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gramtools</span> <span class="pre">infer</span> <span class="pre">{options}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>compress</p></td>
+<td><p>compress a VCF file and index it for fast access</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bgzip</span> <span class="pre">{file}</span> <span class="pre">&amp;&amp;</span> <span class="pre">bcftools</span> <span class="pre">{file}.gz</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>mergeVcfs</p></td>
+<td><p>combine compressed VCFs into one multi-sample VCF</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bcftools</span> <span class="pre">merge</span> <span class="pre">-O</span> <span class="pre">z</span> <span class="pre">{inputs}</span> <span class="pre">&gt;</span> <span class="pre">{output}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#plots"><span class="std std-ref">plots</span></a></p></td>
+<td><p>make plots of the variation found (Brice’s script)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">scripts/analyse_variants.py</span> <span class="pre">{in}.vcf.gz</span> <span class="pre">{outdir}</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Get information the command options by running them on the command-line</strong>.</p>
+<div class="section" id="build">
+<span id="id1"></span><h3>build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h3>
+<p>This command takes a <cite>kmer-size</cite> option, reasonable values are &lt; 12.</p>
 </div>
-<div class="section" id="key-information">
-<h2>Key information<a class="headerlink" href="#key-information" title="Permalink to this headline">¶</a></h2>
-<p>Below is some key information to help you write the workflow.</p>
-<div class="section" id="starting-point">
-<h3>Starting point<a class="headerlink" href="#starting-point" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="quasimap">
+<span id="id2"></span><h3>quasimap<a class="headerlink" href="#quasimap" title="Permalink to this headline">¶</a></h3>
+<p>This command takes a <cite>run-directory</cite> option, which stores all results for a given sample. It used again in the <code class="docutils literal notranslate"><span class="pre">infer</span></code> step.</p>
+</div>
+<div class="section" id="plots">
+<span id="id3"></span><h3>plots<a class="headerlink" href="#plots" title="Permalink to this headline">¶</a></h3>
+<p>The script plots, given a multi-sample VCF file, i) variant density and ii) the site frequency spectrum.</p>
+<p>This script uses the excellent python package <a class="reference external" href="https://scikit-allel.readthedocs.io/en/stable/index.html">scikit-allel</a> for analysing genetic variation, if you’re interested!</p>
+</div>
+</div>
+<div class="section" id="tips">
+<h2>Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="writing">
+<h3>Writing<a class="headerlink" href="#writing" title="Permalink to this headline">¶</a></h3>
 <p>Here is the Snakefile we start from:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
@@ -74,7 +119,9 @@ Two samples are shown here, but you have a total of 10 at your disposal.</span><
 
 <span class="n">rule</span> <span class="nb">all</span><span class="p">:</span>
 	<span class="nb">input</span><span class="p">:</span>
-		<span class="n">expand</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{results}</span><span class="s2">/nuc_diversity.pdf&quot;</span><span class="p">,</span><span class="n">results</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span>
+		<span class="s2">&quot;</span><span class="si">{data}</span><span class="s2">/gramtools/build&quot;</span>
+
+		<span class="c1">#expand(&quot;{results}/nuc_diversity.pdf&quot;,results=config[&quot;results&quot;]) # The final expected result</span>
 
 <span class="n">rule</span> <span class="n">build</span><span class="p">:</span>
 	<span class="nb">input</span><span class="p">:</span>
@@ -83,33 +130,20 @@ Two samples are shown here, but you have a total of 10 at your disposal.</span><
 	<span class="n">output</span><span class="p">:</span>
 		<span class="n">directory</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{data}</span><span class="s2">/gramtools/build&quot;</span><span class="p">)</span>
 	<span class="n">params</span><span class="p">:</span>
-		<span class="c1">#?</span>
-	<span class="n">singularity</span><span class="p">:</span>
-		<span class="n">config</span><span class="p">[</span><span class="s2">&quot;?&quot;</span><span class="p">]</span>
+		<span class="c1">#k = ???</span>
 	<span class="n">shell</span><span class="p">:</span>
-		<span class="c1">#?</span>
+		<span class="c1">#???</span>
 </pre></div>
 </div>
+<p><strong>Keep updating the ``all`` rule with each step you add</strong>, so that you always have a functional workflow.</p>
 </div>
-<div class="section" id="gramtools-commands">
-<h3>Gramtools commands<a class="headerlink" href="#gramtools-commands" title="Permalink to this headline">¶</a></h3>
-<p>Get information on available gramtools commands by running <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">exec</span> <span class="pre">P3/config/WMS.img</span> <span class="pre">gramtools</span></code></p>
-<p>Tips:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">build</span></code> takes a <cite>kmer-size</cite> option, reasonable values are &lt; 12.</p></li>
-<li><p>gramtools commands after <code class="docutils literal notranslate"><span class="pre">build</span></code> use a <cite>run directory</cite>, which you create in the <code class="docutils literal notranslate"><span class="pre">quasimap</span></code> phase. This
-directory should contain all results for a given sample.</p></li>
-</ul>
+<div class="section" id="data">
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
+<p>Start by using only two samples, as in the provided <cite>config/samples.tsv</cite>.</p>
+<p>Then when your workflow works with two samples, run on all of them using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="n">config</span><span class="o">/</span><span class="n">all_samples</span><span class="o">.</span><span class="n">tsv</span> <span class="n">config</span><span class="o">/</span><span class="n">samples</span><span class="o">.</span><span class="n">tsv</span>
+</pre></div>
 </div>
-<div class="section" id="other-processes">
-<h3>Other processes<a class="headerlink" href="#other-processes" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>In process <strong>mergeVcfs</strong>, we need to combine the vcfs from <code class="docutils literal notranslate"><span class="pre">infer</span></code> into one vcf using the program <code class="docutils literal notranslate"><span class="pre">bcftools</span></code>.
-<code class="docutils literal notranslate"><span class="pre">bcftools</span></code> requires compressed and indexed vcfs as input. You can compress using <code class="docutils literal notranslate"><span class="pre">bgzip</span></code>.</p></li>
-<li><p>The process <strong>plots</strong> uses the python3 script in P3/scripts/analyse_variant.py. Try running it on its own to see options.
-The script uses the excellent python package
-<a class="reference external" href="https://scikit-allel.readthedocs.io/en/stable/index.html">scikit-allel</a> for analysing genetic variation, if you’re interested!</p></li>
-</ul>
 </div>
 </div>
 </div>
@@ -136,7 +170,11 @@ The script uses the excellent python package
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../P1.html">Part I: walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../P2.html">Part II: fill in the gaps</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="P3.html">Part III: build a full workflow</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="P3.html">Part III: build a full workflow</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Regular workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Further.html">Going further</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
 </ul>
 
@@ -144,8 +182,8 @@ The script uses the excellent python package
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="P3.html">Build your own workflow</a><ul>
-      <li>Previous: <a href="P3.html" title="previous chapter">Build your own workflow</a></li>
+  <li><a href="P3.html">Build a full workflow</a><ul>
+      <li>Previous: <a href="P3.html" title="previous chapter">Build a full workflow</a></li>
       <li>Next: <a href="Further.html" title="next chapter">Going further</a></li>
   </ul></li>
   </ul></li>

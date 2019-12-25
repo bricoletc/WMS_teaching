@@ -40,10 +40,8 @@ to execute this using snakemake:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># number of files to create</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
 
-<span class="c1"># the first rule is defining for what will happen</span>
-<span class="c1"># its usually called all and the input</span>
-<span class="c1"># specifies all file paths that should exists</span>
-<span class="c1"># AFTER the pipeline is finished</span>
+<span class="c1"># the first rule defines the required output for the whole workflow</span>
+<span class="c1"># it is usually called all</span>
 <span class="n">rule</span> <span class="nb">all</span><span class="p">:</span>
     <span class="nb">input</span><span class="p">:</span>
         <span class="c1"># expand is a snakemake command</span>

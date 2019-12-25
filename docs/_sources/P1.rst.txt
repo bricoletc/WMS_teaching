@@ -10,10 +10,8 @@ to execute this using snakemake:
     # number of files to create
     n = 3
 
-    # the first rule is defining for what will happen
-    # its usually called all and the input
-    # specifies all file paths that should exists
-    # AFTER the pipeline is finished
+    # the first rule defines the required output for the whole workflow
+    # it is usually called all 
     rule all:
         input:
             # expand is a snakemake command

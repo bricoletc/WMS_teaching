@@ -33,7 +33,7 @@ Environment control [#f2]_          [**]                           [**]
 Execution abstraction [#f3]_            [**]                        [**]
 ===============================  ================================  ===============================================
 
-Ultimately both are great and actively developed, and we do encourage you to have a look at nextflow also.
+Ultimately both are great and actively developed.
 
 .. [#f1] nextflow does not rely on file names to link processes and runs each process in its own working directory: thus you can names files whatever you like
         in the workflow script. snakemake can use ``shadow`` directive to execute a rule in this way.

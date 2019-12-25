@@ -6,8 +6,6 @@ Requirements:
 
 * python3
 * git
-* bcftools
-* bgzip
 
 Step 1: Code & Environment
 ----------------------------

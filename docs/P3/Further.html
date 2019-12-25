@@ -14,6 +14,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Useful Resources" href="../resources.html" />
+    <link rel="prev" title="Build a full workflow" href="Workflow.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -31,26 +33,25 @@
           <div class="body" role="main">
             
   <div class="section" id="going-further">
-<h1><a class="toc-backref" href="#id3">Going further</a><a class="headerlink" href="#going-further" title="Permalink to this headline">¶</a></h1>
-<p>You can first work either on improving the workflow or on answering a biological question.</p>
+<h1><a class="toc-backref" href="#id2">Going further</a><a class="headerlink" href="#going-further" title="Permalink to this headline">¶</a></h1>
+<p>You can work on improving the workflow or on answering a biological question.</p>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#going-further" id="id3">Going further</a></p>
+<li><p><a class="reference internal" href="#going-further" id="id2">Going further</a></p>
 <ul>
-<li><p><a class="reference internal" href="#workflow-improvement" id="id4">Workflow improvement</a></p></li>
-<li><p><a class="reference internal" href="#analysis-improvement-drug-resistance-prediction" id="id5">Analysis improvement: Drug resistance prediction</a></p></li>
+<li><p><a class="reference internal" href="#workflow-improvement" id="id3">Workflow improvement</a></p></li>
+<li><p><a class="reference internal" href="#analysis-improvement-drug-resistance-prediction" id="id4">Analysis improvement: Drug resistance prediction</a></p></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="workflow-improvement">
-<h2><a class="toc-backref" href="#id4">Workflow improvement</a><a class="headerlink" href="#workflow-improvement" title="Permalink to this headline">¶</a></h2>
-<p>Use the Snakemake readthedocs webpage for help!</p>
+<h2><a class="toc-backref" href="#id3">Workflow improvement</a><a class="headerlink" href="#workflow-improvement" title="Permalink to this headline">¶</a></h2>
+<p>Use the Snakemake <a class="reference external" href="https://snakemake.readthedocs.io/en/stable">documentation</a> webpage for help!</p>
 <div class="section" id="logging">
 <h3>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h3>
 <p>Add logging to one or more rules, to capture stdout and stderr in files.</p>
-<p><a class="reference external" href="https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#">relevant doc</a></p>
 </div>
 <div class="section" id="benchmarking">
 <h3>Benchmarking<a class="headerlink" href="#benchmarking" title="Permalink to this headline">¶</a></h3>
@@ -82,16 +83,12 @@
 </div>
 </div>
 <div class="section" id="analysis-improvement-drug-resistance-prediction">
-<h2><a class="toc-backref" href="#id5">Analysis improvement: Drug resistance prediction</a><a class="headerlink" href="#analysis-improvement-drug-resistance-prediction" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Analysis improvement: Drug resistance prediction</a><a class="headerlink" href="#analysis-improvement-drug-resistance-prediction" title="Permalink to this headline">¶</a></h2>
 <p>The dataset contains at least one sample which is resistant to a drug against tuberculosis (TB).
 Can you find which samples are resistant to which known TB drugs?</p>
-<p>You can use the <a class="reference external" href="https://github.com/mykrobe-tools/mykrobe">mykrobe</a> program to do this. It is available in
-the singularity image:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">singularity</span> <span class="n">exec</span> <span class="n">P3</span><span class="o">/</span><span class="n">WMS</span><span class="o">.</span><span class="n">img</span> <span class="n">mykrobe</span>
-</pre></div>
-</div>
+<p>You can use the <a class="reference external" href="https://github.com/mykrobe-tools/mykrobe">mykrobe</a> program to do this.</p>
 <p>Check the drug resistance predictions by <cite>mykrobe</cite> are present in the VCFs you produced using the workflow.</p>
-<p>Running mykrobe and making a report could be added to the workflow.</p>
+<p>Running mykrobe and making a report can be added to the workflow.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Use the -f option in mykrobe else it will not predict anything. This is because we are working with a slice of the genome.</p>
@@ -116,12 +113,12 @@ the singularity image:</p>
 
 
 <h3>Navigation</h3>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../P1.html">Part I: walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../P2.html">Part II: fill in the gaps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="P3.html">Part III: build a full workflow</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="P3.html">Part III: build a full workflow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
 </ul>
 
@@ -129,6 +126,10 @@ the singularity image:</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="P3.html">Build a full workflow</a><ul>
+      <li>Previous: <a href="Workflow.html" title="previous chapter">Build a full workflow</a></li>
+      <li>Next: <a href="../resources.html" title="next chapter">Useful Resources</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

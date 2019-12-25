@@ -14,7 +14,7 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Build your own workflow" href="P3/P3.html" />
+    <link rel="next" title="Build a full workflow" href="P3/P3.html" />
     <link rel="prev" title="Walkthrough" href="P1.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -34,15 +34,10 @@
             
   <div class="section" id="fill-in-a-workflow">
 <h1>Fill in  a workflow<a class="headerlink" href="#fill-in-a-workflow" title="Permalink to this headline">¶</a></h1>
-<p>Now that you know the syntax of Snakemake we want to test your
-understanding of Snakemake before we come to a larger project.</p>
-<p>For this we created two small workflows which miss a few pieces of information
-in some rules.</p>
-<p>Please fill in the gaps inside the P2 folder of the git repo.</p>
-<p>You should start with the fixme file in the <code class="docutils literal notranslate"><span class="pre">easier</span></code> folder first- the <code class="docutils literal notranslate"><span class="pre">harder</span></code> one has a more complex workflow
-and is not the primary goal.</p>
-<p>In the end you should be able to run the workflow without issues
-if you use snakemake to launch it:</p>
+<p>We have a workflow with missing information in some rules, marked as <code class="docutils literal notranslate"><span class="pre">???</span></code>. The goal is to fill them in.</p>
+<p>There are two flavours of the workflow. Start with the fixme file in the <code class="docutils literal notranslate"><span class="pre">easier</span></code> folder; the one in the <code class="docutils literal notranslate"><span class="pre">harder</span></code> folder is more involved.</p>
+<p>Test what you filled in works by using the <code class="docutils literal notranslate"><span class="pre">-n</span></code> flag.</p>
+<p>Actually run using</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>snakemake --use-conda -j <span class="m">4</span>
 </pre></div>
 </div>
@@ -81,7 +76,7 @@ In this case the environment we created contains everything needed for all rules
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="P1.html" title="previous chapter">Walkthrough</a></li>
-      <li>Next: <a href="P3/P3.html" title="next chapter">Build your own workflow</a></li>
+      <li>Next: <a href="P3/P3.html" title="next chapter">Build a full workflow</a></li>
   </ul></li>
 </ul>
 </div>

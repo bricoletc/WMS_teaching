@@ -1,7 +1,7 @@
 Going further
 =====================
 
-You can first work either on improving the workflow or on answering a biological question.
+You can work on improving the workflow or on answering a biological question.
 
 .. contents::
     :depth: 2
@@ -9,14 +9,12 @@ You can first work either on improving the workflow or on answering a biological
 Workflow improvement
 -------------------------------------
 
-Use the Snakemake readthedocs webpage for help!
+Use the Snakemake `documentation <https://snakemake.readthedocs.io/en/stable>`_ webpage for help!
 
 Logging
 `````````
 
 Add logging to one or more rules, to capture stdout and stderr in files.
-
-`relevant doc <https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#>`_
 
 Benchmarking
 `````````````
@@ -58,14 +56,11 @@ Analysis improvement: Drug resistance prediction
 The dataset contains at least one sample which is resistant to a drug against tuberculosis (TB).
 Can you find which samples are resistant to which known TB drugs?
 
-You can use the `mykrobe <https://github.com/mykrobe-tools/mykrobe>`_ program to do this. It is available in
-the singularity image::
-
-    singularity exec P3/WMS.img mykrobe
+You can use the `mykrobe <https://github.com/mykrobe-tools/mykrobe>`_ program to do this. 
 
 Check the drug resistance predictions by `mykrobe` are present in the VCFs you produced using the workflow.
 
-Running mykrobe and making a report could be added to the workflow.
+Running mykrobe and making a report can be added to the workflow.
 
 .. tip::
     Use the -f option in mykrobe else it will not predict anything. This is because we are working with a slice of the genome.
