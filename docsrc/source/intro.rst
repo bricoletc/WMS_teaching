@@ -17,10 +17,10 @@ Some obvious examples:
 * Single-cell RNA-Seq pipeline
 * Genomics variant calling pipeline
 
-Probably at some point during your PhD you have or will need to write your own pipeline (we did!). 
+Probably at some point during your PhD you have or will need to write your own pipeline (I did!). 
 
 
-If you are motivated and persistent, or some kind of wizard, you could maybe write your pipeline in ``bash``. 
+If you are motivated and persistent- or some kind of wizard- you could maybe write your pipeline in ``bash``. 
 But here are some aspects that could be hard to implement:
 
 * Forking processes [#f1]_: running independent processes simultaneously

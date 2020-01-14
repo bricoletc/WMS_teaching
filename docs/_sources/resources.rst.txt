@@ -7,27 +7,27 @@ The snakemake tutorial: https://snakemake.readthedocs.io/en/stable/tutorial/tuto
 Nextflow
 -----------
 
-Is a strong alternative workflow manager to snakemake, also with a lot of examples and users in bioinformatics.
+Nextflow is also a great workflow manager, with a lot of examples and `users in bioinformatics <https://github.com/nextflow-io/awesome-nextflow>`_.
 
-The key difference is that Nextflow does not compute the workflow DAG before running: instead of pre-computing all dependencies like snakemake, it runs
-as soon as it sees a process which can consume data it has at its disposal. 
+One key difference is that Nextflow does not compute the workflow DAG before running: thus it does not know what the final target is (Snakemake's `all` rule). For large workflows that means it starts running faster. 
 
-To pass data around it relies on a more general concept of *channels* instead of *files*. Channels
-can be created inside and outside *processes* (the equivalent of snakemake *rules*) and can be manipulated in many ways in the workflow script.
+To link processes and pass data through it relies on *channels* instead of files. Channels can contain filenames, but also any other data which can be manipulated in different ways (for example, filtered) during workflow execution.
 
-Here is our take on some differences. The more stars the better.
+In one sentence Snakemake is 'output-oriented' while Nextflow is 'process-oriented'. 
+
+Here is my take on some differences. The more stars the better.
 
 ===============================  ================================  ===============================================
 What I want                         snakemake                          nextflow
 ===============================  ================================  ===============================================
-Easy scripting                      [**] Python!                   [*] Java scripting derivative: Groovy
+Easy scripting                      [**] Python <3                   [*] Java scripting derivative: Groovy
 Getting going fast                  [**] Rules and files           [*] Processes and channels
 Visualise DAG                    [**] Get before the run           [*] Get only after the run
-Good Documentation               [**]                              [*]
+Good Documentation               [**]                              [**]
 Start workflow quickly           [*] Needs to compute DAG          [**] No need for DAG
 Clean working directory [#f1]_   [*] Execution where files are     [**] Execution in isolated directories
 Getting run statistics           [*] html reports, benchmark rule   [**] html reports, ``--with-trace``
-Data communication                [*] always files or directories    [**] Manipulate channels with ``operators``
+Data communication                [*] always files                  [**] Manipulate channels with ``operators``
 Rerun where I stopped            [**]                                [**]
 Environment control [#f2]_          [**]                           [**]
 Execution abstraction [#f3]_            [**]                        [**]

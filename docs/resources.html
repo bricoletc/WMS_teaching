@@ -36,12 +36,11 @@
 <p>The snakemake tutorial: <a class="reference external" href="https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html">https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html</a>.</p>
 <div class="section" id="nextflow">
 <h2>Nextflow<a class="headerlink" href="#nextflow" title="Permalink to this headline">¶</a></h2>
-<p>Is a strong alternative workflow manager to snakemake, also with a lot of examples and users in bioinformatics.</p>
-<p>The key difference is that Nextflow does not compute the workflow DAG before running: instead of pre-computing all dependencies like snakemake, it runs
-as soon as it sees a process which can consume data it has at its disposal.</p>
-<p>To pass data around it relies on a more general concept of <em>channels</em> instead of <em>files</em>. Channels
-can be created inside and outside <em>processes</em> (the equivalent of snakemake <em>rules</em>) and can be manipulated in many ways in the workflow script.</p>
-<p>Here is our take on some differences. The more stars the better.</p>
+<p>Nextflow is also a great workflow manager, with a lot of examples and <a class="reference external" href="https://github.com/nextflow-io/awesome-nextflow">users in bioinformatics</a>.</p>
+<p>One key difference is that Nextflow does not compute the workflow DAG before running: thus it does not know what the final target is (Snakemake’s <cite>all</cite> rule). For large workflows that means it starts running faster.</p>
+<p>To link processes and pass data through it relies on <em>channels</em> instead of files. Channels can contain filenames, but also any other data which can be manipulated in different ways (for example, filtered) during workflow execution.</p>
+<p>In one sentence Snakemake is ‘output-oriented’ while Nextflow is ‘process-oriented’.</p>
+<p>Here is my take on some differences. The more stars the better.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 28%" />
@@ -56,7 +55,7 @@ can be created inside and outside <em>processes</em> (the equivalent of snakemak
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Easy scripting</p></td>
-<td><p>[**] Python!</p></td>
+<td><p>[**] Python &lt;3</p></td>
 <td><p>[*] Java scripting derivative: Groovy</p></td>
 </tr>
 <tr class="row-odd"><td><p>Getting going fast</p></td>
@@ -69,7 +68,7 @@ can be created inside and outside <em>processes</em> (the equivalent of snakemak
 </tr>
 <tr class="row-odd"><td><p>Good Documentation</p></td>
 <td><p>[**]</p></td>
-<td><p>[*]</p></td>
+<td><p>[**]</p></td>
 </tr>
 <tr class="row-even"><td><p>Start workflow quickly</p></td>
 <td><p>[*] Needs to compute DAG</p></td>
@@ -84,7 +83,7 @@ can be created inside and outside <em>processes</em> (the equivalent of snakemak
 <td><p>[**] html reports, <code class="docutils literal notranslate"><span class="pre">--with-trace</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>Data communication</p></td>
-<td><p>[*] always files or directories</p></td>
+<td><p>[*] always files</p></td>
 <td><p>[**] Manipulate channels with <code class="docutils literal notranslate"><span class="pre">operators</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>Rerun where I stopped</p></td>
@@ -141,6 +140,13 @@ in the workflow script. snakemake can use <code class="docutils literal notransl
 
 
 
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=bricoletc&repo=WMS_teaching&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
 
 
 <h3>Navigation</h3>
@@ -150,7 +156,11 @@ in the workflow script. snakemake can use <code class="docutils literal notransl
 <li class="toctree-l1"><a class="reference internal" href="P1.html">Part I: walkthrough</a></li>
 <li class="toctree-l1"><a class="reference internal" href="P2.html">Part II: fill in the gaps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="P3/P3.html">Part III: build a full workflow</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Resources</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nextflow">Nextflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#glossary">Glossary</a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">
@@ -187,7 +197,7 @@ in the workflow script. snakemake can use <code class="docutils literal notransl
       &copy;2019, Brice Letcher & Paul Saary.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

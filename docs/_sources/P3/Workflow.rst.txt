@@ -7,7 +7,7 @@ The task
 
 We want to perform read mapping and variant genotyping against a genome graph, a data structure which contains known genetic variation observed in a population or a species.
 
-We will use `gramtools <https://github.com/iqbal-lab-org/gramtools>`_ to do this, which Brice develops. 
+We will use `gramtools <https://github.com/iqbal-lab-org/gramtools>`_ to do this, which I develop. 
 
 The data
 ---------
